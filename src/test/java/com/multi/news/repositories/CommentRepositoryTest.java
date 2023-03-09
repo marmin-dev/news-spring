@@ -6,9 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
@@ -33,7 +31,7 @@ public class CommentRepositoryTest {
 
         Assertions.assertEquals("kim",comment1.getAuthor());
         Assertions.assertEquals("funny",comment1.getContent());
-
+        System.out.println(comment1.getModifiedDate());
     }
 
     @Test
@@ -46,5 +44,6 @@ public class CommentRepositoryTest {
         Comment comment2 = commentRepository.findByAuthor("kim");
         Assertions.assertEquals(comment1.getAuthor(),comment2.getAuthor());
         Assertions.assertEquals(comment1.getContent(),comment2.getContent());
+        System.out.println(comment2.getModifiedDate());
     }
 }
