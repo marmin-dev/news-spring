@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/comment")
 @RequiredArgsConstructor
@@ -17,5 +19,10 @@ public class CommentApiController {
     @PostMapping
     public ResponseEntity<Long> commentCreate(@RequestBody CommentRequestDto dto){
         return ResponseEntity.status(HttpStatus.OK).body(commentService.commentCreate(dto));
+    }
+    // PostMan Test
+    @GetMapping
+    public ResponseEntity<String> commentRead(){
+        return ResponseEntity.status(HttpStatus.OK).body(commentService.commentGet().toString());
     }
 }
