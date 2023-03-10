@@ -16,6 +16,7 @@ import java.util.List;
 public class CommentApiController {
 
     private final CommentService commentService;
+
     @PostMapping
     public ResponseEntity<Long> commentCreate(@RequestBody CommentRequestDto dto){
         return ResponseEntity.status(HttpStatus.OK).body(commentService.commentCreate(dto));
@@ -24,5 +25,15 @@ public class CommentApiController {
     @GetMapping
     public ResponseEntity<String> commentRead(){
         return ResponseEntity.status(HttpStatus.OK).body(commentService.commentGet().toString());
+    }
+    // update method
+    @PutMapping("/{id}")
+    public ResponseEntity<Long> commentUpdate(@PathVariable Long id, @RequestBody CommentRequestDto dto){
+        return ResponseEntity.status(HttpStatus.OK).body(commentService.commentUpdate(id, dto));
+    }
+    // delete method
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> commentDelete(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(commentService.commentDelete(id));
     }
 }
