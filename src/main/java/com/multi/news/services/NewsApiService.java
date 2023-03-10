@@ -113,26 +113,7 @@ public class NewsApiService {
         List<NewsResponseDto> dtos = getData(data1);
         return dtos;
     }
-    public NewsResponseDto newsDetail(String post) throws JsonProcessingException{
-        List<NewsResponseDto> dtos = newsAll();
-        dtos.addAll(newsBusiness());
-        dtos.addAll(newsEntertainment());
-        dtos.addAll(newsHealth());
-        dtos.addAll(newsScience());
-        dtos.addAll(newsSports());
-        dtos.addAll(newsTechnology());
-        List<NewsResponseDto> dtoList =dtos.stream().distinct().collect(Collectors.toList());
-        NewsResponseDto dto1 = new NewsResponseDto();
-        for(NewsResponseDto dto : dtoList) {
-            if (post == dto.getTitle()) {
-                dto1.setAuthor(dto.getAuthor());
-                dto1.setUrl(dto.getUrl());
-                dto1.setPublishedAt(dto.getPublishedAt());
-                dto1.setTitle(dto.getTitle());
-            }
-        }
-        return dto1;
-    }
+
 
 }
 
