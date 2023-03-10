@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class NewsApiService {
@@ -25,24 +26,31 @@ public class NewsApiService {
 
     String[] categories = {"business","entertainment","health","science","sports","technology"};
 
+    // Json 문자열 파싱
     public String parsing(String data){
         try {
             JSONParser jsonParser = new JSONParser();
             JSONObject jsonObj1 = (JSONObject) jsonParser.parse(data);
             JSONArray jsonObj2 = (JSONArray) jsonObj1.get("articles");
+            // articles 만 추출한 데이터 String 타입으로 내보냄
             return jsonObj2.toJSONString();
         }catch (ParseException e){
             e.printStackTrace();
             return "error";
         }
     }
+    // 데이터 가져오기
     public List<NewsResponseDto> getData(String data) throws JsonProcessingException {
 //        System.out.println(data);
         ObjectMapper obj = new ObjectMapper();
+        // 오브젝트에서 원하는 값만 추출 가능하도록 설정함
         obj.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        // 뉴스리스트는 오브젝트와 dto에서 서로 값이 같은 오브젝트 가져옴
         List<NewsResponseDto> newsList = obj.readValue(data, new TypeReference<List<NewsResponseDto>>() {});
+        // List 타입으로 Dto로 내보내기
         return newsList;
     }
+    // restTemplate으로 주소에서 Json데이터 가져오기
     public String getRestTemplate(String url){
         RestTemplate restTemplate = new RestTemplate();
         String data = restTemplate.getForObject(url, String.class);
@@ -104,6 +112,26 @@ public class NewsApiService {
         String data1 = parsing(data);
         List<NewsResponseDto> dtos = getData(data1);
         return dtos;
+    }
+    public NewsResponseDto newsDetail(String post) throws JsonProcessingException{
+        List<NewsResponseDto> dtos = newsAll();
+        dtos.addAll(newsBusiness());
+        dtos.addAll(newsEntertainment());
+        dtos.addAll(newsHealth());
+        dtos.addAll(newsScience());
+        dtos.addAll(newsSports());
+        dtos.addAll(newsTechnology());
+        List<NewsResponseDto> dtoList =dtos.stream().distinct().collect(Collectors.toList());
+        NewsResponseDto dto1 = new NewsResponseDto();
+        for(NewsResponseDto dto : dtoList) {
+            if (post == dto.getTitle()) {
+                dto1.setAuthor(dto.getAuthor());
+                dto1.setUrl(dto.getUrl());
+                dto1.setPublishedAt(dto.getPublishedAt());
+                dto1.setTitle(dto.getTitle());
+            }
+        }
+        return dto1;
     }
 
 }
