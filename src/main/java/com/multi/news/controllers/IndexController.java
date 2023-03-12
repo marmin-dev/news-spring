@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequiredArgsConstructor
@@ -83,5 +84,13 @@ public class IndexController {
         model.addAttribute("comment", commentService.commentGet("technology"));
         model.addAttribute("category","technology");
         return "technology";
+    }
+    @GetMapping("/{category}/{id}")
+    public String updateForm(@PathVariable String category, @PathVariable Long id, Model model) throws JsonProcessingException {
+        model.addAttribute("news", newsApiService.newsTechnology());
+        model.addAttribute("comment", commentService.commentGet(category));
+        model.addAttribute("category",category);
+        model.addAttribute("commentupdate",commentService.findComment(id));
+        return "updateform";
     }
 }

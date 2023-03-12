@@ -35,10 +35,10 @@ public class CommentService {
     }
     // 댓글 수정 버튼 누를 시 발생
     @Transactional
-    public Long commentUpdate(Long id,CommentRequestDto dto){
+    public Long commentUpdate(Long id,String content){
         Comment comment=commentRepository.findById(id).orElseThrow(()->
                 new IllegalArgumentException("해당 게시물이 존재하지 않음"));
-        comment.setContent(dto.getContent());
+        comment.setContent(content);
         return id;
     }
     // 삭제 버튼 누를시 연결될 메서드
@@ -46,5 +46,11 @@ public class CommentService {
     public Long commentDelete(Long id){
         commentRepository.deleteById(id);
         return id;
+    }
+    @Transactional
+    public CommentResponseDto findComment(Long id){
+        Comment comment = commentRepository.findById(id).get();
+        CommentResponseDto dto = new CommentResponseDto(comment);
+        return dto;
     }
 }

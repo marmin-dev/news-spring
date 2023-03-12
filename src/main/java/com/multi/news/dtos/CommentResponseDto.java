@@ -14,12 +14,12 @@ public class CommentResponseDto {
 
     private String content;
 
-    private String category;
+    private Long id;
 
     private LocalDateTime modifiedDate;
 
     public CommentResponseDto(Comment comment){
-        this.category = comment.getCategory();
+        this.id = comment.getId();
         this.author = comment.getAuthor();
         this.content = comment.getContent();
         this.modifiedDate = comment.getModifiedDate();

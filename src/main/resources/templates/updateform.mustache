@@ -1,0 +1,32 @@
+{{>layout/header}}
+<div>
+    <div class="d-flex flex-column align-items-stretch flex-shrink-0" style="width: 20%; float:left;">
+        <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-5 fw-semibold">{{category}} comment</span>
+        <div>
+            {{#commentupdate}}
+            <input type="text" value="{{content}}" id="content"/>
+            <input type="hidden" value="{{id}}" id="id"readonly>
+                <input type="hidden" value="{{category}}" id="category"readonly>
+                <div class=" d-flex flex-row-reverse">
+                    <a href="/{{category}}"><button class="btn btn-danger">Cancel</button></a>
+                    <button class="btn btn-primary" id="btn-update">Update</button>
+                </div>
+            {{/commentupdate}}
+        </div>
+        {{^comment}}
+            <p>No Comment...</p>
+        {{/comment}}
+        {{#comment}}
+            <div class="list-group list-group-flush border-bottom scrollarea">
+                <strong class="mb-1">{{author}}</strong>
+                <small>{{modifiedDate}}</small>
+                <input type="hidden" value="{{id}}" id="comment-id" readonly>
+                <div class="col-10 mb-1">{{content}}</div>
+            </div>
+        {{/comment}}
+
+    </div>
+    {{>layout/list}}
+</div>
+{{>layout/footerform}}

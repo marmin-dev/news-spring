@@ -28,8 +28,8 @@ public class CommentApiController {
 //    }
     // update method
     @PutMapping("/{id}")
-    public ResponseEntity<Long> commentUpdate(@PathVariable Long id, @RequestBody CommentRequestDto dto){
-        return ResponseEntity.status(HttpStatus.OK).body(commentService.commentUpdate(id, dto));
+    public ResponseEntity<Long> commentUpdate(@PathVariable Long id, @RequestBody String content){
+        return ResponseEntity.status(HttpStatus.OK).body(commentService.commentUpdate(id, content));
     }
     // delete method
     @DeleteMapping("/{id}")
