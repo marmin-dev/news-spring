@@ -28,8 +28,12 @@
             </ul>
 
             <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-outline-primary me-2">NaverLogin</button>
-                <button type="button" class="btn btn-primary">GoogleLogin</button>
+                {{^username}}
+                    <a href="/oauth2/authorization/google"><button type="button" class="btn btn-primary">GoogleLogin</button></a>
+                {{/username}}
+                {{#username}}
+                    <p>Welcome {{username}}</p>
+                {{/username}}
             </div>
         </header>
     </div>
