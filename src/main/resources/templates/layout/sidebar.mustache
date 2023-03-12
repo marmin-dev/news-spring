@@ -1,5 +1,5 @@
-<div class="d-flex flex-column align-items-stretch flex-shrink-0" style="width: 20%; float:left;">
-    <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 overflow-auto" style="width: 20%; float:left;
+ height:1726px;">
     <span class="fs-5 fw-semibold">{{category}} comment</span>
     <div>
         <input type="text" placeholder="Write comment..." id="content"/>
@@ -13,10 +13,8 @@
     <div class="list-group list-group-flush border-bottom scrollarea">
         <strong class="mb-1">{{author}}</strong>
         <small>{{modifiedDate}}</small>
-        <input type="hidden" value="{{id}}" id="comment-id" readonly>
         <div class="col-10 mb-1">{{content}}</div>
         <div class=" d-flex flex-row-reverse">
-            <button class="btn btn-danger" id="btn-delete">Delete</button>
             <a href="/{{category}}/{{id}}"><button class="btn btn-primary">Update</button></a>
         </div>
     </div>

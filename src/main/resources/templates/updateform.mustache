@@ -6,10 +6,11 @@
         <div>
             {{#commentupdate}}
             <input type="text" value="{{content}}" id="content"/>
-            <input type="hidden" value="{{id}}" id="id"readonly>
-                <input type="hidden" value="{{category}}" id="category"readonly>
+            <input type="hidden" value="{{id}}" id="id" readonly>
+                <input type="hidden" value="{{category}}" id="category" readonly>
                 <div class=" d-flex flex-row-reverse">
-                    <a href="/{{category}}"><button class="btn btn-danger">Cancel</button></a>
+                    <button class="btn btn-danger" id="btn-delete">Delete</button>
+                    <a href="/{{category}}"><button class="btn btn-primary">Cancel</button></a>
                     <button class="btn btn-primary" id="btn-update">Update</button>
                 </div>
             {{/commentupdate}}

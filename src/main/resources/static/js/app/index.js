@@ -43,7 +43,7 @@ var main={
     },
 
     deleteComment : function() {
-        var id = $('#comment-id').val();
+        var id = $('#id').val();
         var category = $('#category').val();
         $('#delete-modal').modal('show');
         $('#confirm-delete-button').on('click', function () {
