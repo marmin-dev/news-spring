@@ -23,14 +23,5 @@ public class NewsResponseDto {
         String[] str1 = url.split("/");
         return str1[5];
     }
-    public NewDto toNewDto(NewsResponseDto dto){
-        return NewDto.builder()
-                .author(dto.getAuthor())
-                .title(dto.getTitle())
-                .url(dto.getUrl())
-                .publishedAt(dto.getPublishedAt())
-                .oid(getKey(url))
-                .build();
-    }
 
 }

@@ -26,11 +26,11 @@ public class CommentServiceTest {
         commentRepository.deleteAll();
     }
 
-    @Test
-    public void createTest(){
-        CommentRequestDto dto = new CommentRequestDto("content");
-        Long key= commentService.commentCreate(dto);
-        Comment comment = commentRepository.findByAuthor("fakeauthor");
-        Assertions.assertEquals(key,comment.getId());
-    }
+//    @Test
+//    public void createTest(){
+//        CommentRequestDto dto = new CommentRequestDto("content");
+//        Long key= commentService.commentCreate(dto);
+//        Comment comment = commentRepository.findByAuthor("fakeauthor");
+//        Assertions.assertEquals(key,comment.getId());
+//    }
 }

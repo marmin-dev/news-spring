@@ -17,15 +17,15 @@ public class CommentApiController {
 
     private final CommentService commentService;
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<Long> commentCreate(@RequestBody CommentRequestDto dto){
         return ResponseEntity.status(HttpStatus.OK).body(commentService.commentCreate(dto));
     }
     // PostMan Test
-    @GetMapping
-    public ResponseEntity<String> commentRead(){
-        return ResponseEntity.status(HttpStatus.OK).body(commentService.commentGet().toString());
-    }
+//    @GetMapping
+//    public ResponseEntity<String> commentRead(){
+//        return ResponseEntity.status(HttpStatus.OK).body(commentService.commentGet().toString());
+//    }
     // update method
     @PutMapping("/{id}")
     public ResponseEntity<Long> commentUpdate(@PathVariable Long id, @RequestBody CommentRequestDto dto){

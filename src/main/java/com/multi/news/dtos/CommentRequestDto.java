@@ -9,11 +9,13 @@ import lombok.*;
 public class CommentRequestDto {
     private String content;
 
+    private String category;
+
     public Comment toEntity(){
         return Comment.builder()
                 .content(content)
+                .category(category)
                 .author("fakeauthor")
-                .post("fakepost")
                 .build();
 
     }

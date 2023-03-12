@@ -1,0 +1,21 @@
+<div class="d-flex flex-column align-items-stretch flex-shrink-0" style="width: 20%; float:left;">
+    <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+    <span class="fs-5 fw-semibold">{{category}} Comment</span>
+    <div>
+        <input type="text" placeholder="Write comment..." id="content"/>
+        <input type="hidden" value="{{category}}" id="category" readonly>
+        <button class="btn btn-primary" id="btn-save">Submit</button>
+    </div>
+{{^comment}}
+        <p>No Comment...</p>
+    {{/comment}}
+    {{#comment}}
+    <div class="list-group list-group-flush border-bottom scrollarea">
+                <strong class="mb-1">{{author}}</strong>
+                <small>{{modifiedDate}}</small>
+
+            <div class="col-10 mb-1 small">{{content}}</div>
+    </div>
+    {{/comment}}
+
+</div>

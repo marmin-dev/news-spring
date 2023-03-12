@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment,Long> {
 
-    List<Comment> findByPost(String post, Sort sort);
+    List<Comment> findByCategory(String category, Sort sort);
 
     Comment findByAuthor(String author);
 

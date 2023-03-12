@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Table(name = "Comment")
@@ -19,11 +18,12 @@ public class Comment extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @Column(nullable = false)
     private String content;
 
-    @NotNull
+    @Column(nullable = false)
     private String author;
 
-    private String post;
+    @Column(nullable = false)
+    private String category;
 }

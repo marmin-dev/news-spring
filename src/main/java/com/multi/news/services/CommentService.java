@@ -18,16 +18,17 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
 
+
+
     // 댓글 달기 메서드
     @Transactional
     public Long commentCreate(CommentRequestDto dto){
         return commentRepository.save(dto.toEntity()).getId();
     }
-
     // 게시물 별 댓글 찾기 메세드, 최신순 정렬
     @Transactional
-    public List<CommentResponseDto> commentGet(){
-        List<CommentResponseDto> comment = commentRepository.findByPost("fakepost",Sort.by(Sort.Order.
+    public List<CommentResponseDto> commentGet(String category){
+        List<CommentResponseDto> comment = commentRepository.findByCategory(category,Sort.by(Sort.Order.
                         desc("id"))).stream()
                 .map(comment1 -> new CommentResponseDto(comment1)).collect(Collectors.toList());
         return comment;

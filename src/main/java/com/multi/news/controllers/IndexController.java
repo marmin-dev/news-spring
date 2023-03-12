@@ -1,68 +1,87 @@
 package com.multi.news.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.multi.news.dtos.NewsResponseDto;
+import com.multi.news.services.CommentService;
 import com.multi.news.services.NewsApiService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequiredArgsConstructor
 public class IndexController {
 
     private final NewsApiService newsApiService;
-    private final CommentApiController commentApiController;
+    private final CommentService commentService;
 
     //main
     @GetMapping("/")
     public String index(Model model) throws JsonProcessingException {
-        model.addAttribute("news",newsApiService.newsAll());
+        model.addAttribute("news", newsApiService.newsAll());
+        model.addAttribute("comment", commentService.commentGet("all"));
+        model.addAttribute("category","all");
         return "index";
     }
+    @GetMapping("/all")
+    public String all(Model model) throws JsonProcessingException {
+        model.addAttribute("news", newsApiService.newsAll());
+        model.addAttribute("comment", commentService.commentGet("all"));
+        model.addAttribute("category","all");
+        return "index";
+    }
+
     //business
     @GetMapping("/business")
     public String businessNews(Model model) throws JsonProcessingException {
-        model.addAttribute("news",newsApiService.newsBusiness());
+        model.addAttribute("news", newsApiService.newsBusiness());
+        model.addAttribute("comment", commentService.commentGet("business"));
+        model.addAttribute("category","business");
         return "business";
     }
+
     //entertainment
     @GetMapping("/entertainment")
     public String entertainmentNews(Model model) throws JsonProcessingException {
-        model.addAttribute("news",newsApiService.newsEntertainment());
+        model.addAttribute("news", newsApiService.newsEntertainment());
+        model.addAttribute("comment", commentService.commentGet("entertainment"));
+        model.addAttribute("category","entertainment");
         return "entertainment";
     }
+
     //health
     @GetMapping("/health")
     public String healthNews(Model model) throws JsonProcessingException {
-        model.addAttribute("news",newsApiService.newsHealth());
+        model.addAttribute("news", newsApiService.newsHealth());
+        model.addAttribute("comment", commentService.commentGet("health"));
+        model.addAttribute("category","health");
         return "health";
     }
+
     //science
     @GetMapping("/science")
     public String scienceNews(Model model) throws JsonProcessingException {
-        model.addAttribute("news",newsApiService.newsScience());
+        model.addAttribute("news", newsApiService.newsScience());
+        model.addAttribute("comment", commentService.commentGet("science"));
+        model.addAttribute("category","science");
         return "science";
     }
+
     //sports
     @GetMapping("/sports")
     public String sportsNews(Model model) throws JsonProcessingException {
-        model.addAttribute("news",newsApiService.newsSports());
+        model.addAttribute("news", newsApiService.newsSports());
+        model.addAttribute("comment", commentService.commentGet("sports"));
+        model.addAttribute("category","sports");
         return "sports";
     }
+
     //technology
     @GetMapping("/technology")
     public String technologyNews(Model model) throws JsonProcessingException {
-        model.addAttribute("news",newsApiService.newsTechnology());
+        model.addAttribute("news", newsApiService.newsTechnology());
+        model.addAttribute("comment", commentService.commentGet("technology"));
+        model.addAttribute("category","technology");
         return "technology";
     }
-    @GetMapping("/{}")
-    public String getDetail(@PathVariable String post, Model model) throws JsonProcessingException {
-        model.addAttribute("news",newsApiService.newsDetail(post));
-        return "newsdetail";
-    }
-
 }
