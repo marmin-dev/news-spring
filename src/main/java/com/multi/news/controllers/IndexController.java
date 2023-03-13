@@ -21,6 +21,7 @@ public class IndexController {
 
     private final HttpSession httpSession;
 
+
     //main
     @GetMapping("/")
     public String index(Model model) throws JsonProcessingException {
@@ -28,6 +29,9 @@ public class IndexController {
         model.addAttribute("comment", commentService.commentGet("all"));
         model.addAttribute("category","all");
         SessionUser user =(SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("userName",user.getName());
+        }
         return "index";
     }
     @GetMapping("/all")
@@ -36,6 +40,9 @@ public class IndexController {
         model.addAttribute("comment", commentService.commentGet("all"));
         model.addAttribute("category","all");
         SessionUser user =(SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("userName",user.getName());
+        }
         return "index";
     }
 
@@ -46,6 +53,9 @@ public class IndexController {
         model.addAttribute("comment", commentService.commentGet("business"));
         model.addAttribute("category","business");
         SessionUser user =(SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("userName",user.getName());
+        }
         return "business";
     }
 
@@ -56,6 +66,9 @@ public class IndexController {
         model.addAttribute("comment", commentService.commentGet("entertainment"));
         model.addAttribute("category","entertainment");
         SessionUser user =(SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("userName",user.getName());
+        }
         return "entertainment";
     }
 
@@ -66,6 +79,9 @@ public class IndexController {
         model.addAttribute("comment", commentService.commentGet("health"));
         model.addAttribute("category","health");
         SessionUser user =(SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("userName",user.getName());
+        }
         return "health";
     }
 
@@ -76,6 +92,9 @@ public class IndexController {
         model.addAttribute("comment", commentService.commentGet("science"));
         model.addAttribute("category","science");
         SessionUser user =(SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("userName",user.getName());
+        }
         return "science";
     }
 
@@ -86,6 +105,9 @@ public class IndexController {
         model.addAttribute("comment", commentService.commentGet("sports"));
         model.addAttribute("category","sports");
         SessionUser user =(SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("userName",user.getName());
+        }
         return "sports";
     }
 
@@ -96,6 +118,9 @@ public class IndexController {
         model.addAttribute("comment", commentService.commentGet("technology"));
         model.addAttribute("category","technology");
         SessionUser user =(SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("userName",user.getName());
+        }
         return "technology";
     }
     @GetMapping("/{category}/{id}")
@@ -105,6 +130,9 @@ public class IndexController {
         model.addAttribute("category",category);
         model.addAttribute("commentupdate",commentService.findComment(id));
         SessionUser user =(SessionUser) httpSession.getAttribute("user");
+        if(user != null){
+            model.addAttribute("userName",user.getName());
+        }
         return "updateform";
     }
 }
