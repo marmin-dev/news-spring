@@ -24,7 +24,7 @@ public class NewsApiService {
     @Value("${apiKey}")
     String apiKey;
 
-    String[] categories = {"business","entertainment","health","science","sports","technology"};
+    // String[] categories = {"business","entertainment","health","science","sports","technology"};
 
     // Json 문자열 파싱
     public String parsing(String data){
@@ -55,6 +55,20 @@ public class NewsApiService {
         RestTemplate restTemplate = new RestTemplate();
         String data = restTemplate.getForObject(url, String.class);
         return data;
+    }
+    // refactoring
+    public List<NewsResponseDto> newsGet(String category) throws JsonProcessingException {
+        String url = null;
+        if ("all".equals(category)) {
+            url = urlFr + apiKey;
+        }
+        else {
+            url = urlFrc + category + apiKey;
+        }
+        String data = getRestTemplate(url);
+        String data1 = parsing(data);
+        List<NewsResponseDto> dtos = getData(data1);
+        return dtos;
     }
     // top headlines
 //    public List<NewsResponseDto> newsAll() throws JsonProcessingException {
@@ -114,19 +128,7 @@ public class NewsApiService {
 //        return dtos;
 //    }
     // Refactoring
-    public List<NewsResponseDto> newsGet(String category) throws JsonProcessingException {
-        String url = null;
-        if ("all".equals(category)) {
-            url = urlFr + apiKey;
-        }
-        else {
-            url = urlFrc + category + apiKey;
-        }
-        String data = getRestTemplate(url);
-        String data1 = parsing(data);
-        List<NewsResponseDto> dtos = getData(data1);
-        return dtos;
-    }
+
 
 }
 

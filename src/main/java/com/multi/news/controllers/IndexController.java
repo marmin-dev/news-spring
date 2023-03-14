@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,6 +23,8 @@ public class IndexController {
 
     private final HttpSession httpSession;
 
+    String[] cate = {"all","business","entertainment","health","science","sports","technology"};
+    List<String> categories = Arrays.asList(cate);
 
     //main
     @GetMapping("/")
@@ -43,7 +47,11 @@ public class IndexController {
         if(user != null){
             model.addAttribute("userName",user.getName());
         }
-        return "index";
+        if(categories.contains(category)){
+            return "index";
+        }else{
+            return "page404";
+        }
     }
     @GetMapping("/{category}/{id}")
     public String updateForm(@PathVariable String category, @PathVariable Long id, Model model) throws JsonProcessingException {
