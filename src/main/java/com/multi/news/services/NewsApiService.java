@@ -57,63 +57,76 @@ public class NewsApiService {
         return data;
     }
     // top headlines
-    public List<NewsResponseDto> newsAll() throws JsonProcessingException {
-        String url = urlFr + apiKey;
-        String data = getRestTemplate(url);
-        String data1 = parsing(data);
-        List<NewsResponseDto> dtos = getData(data1);
-        return dtos;
-    }
+//    public List<NewsResponseDto> newsAll() throws JsonProcessingException {
+//        String url = urlFr + apiKey;
+//        String data = getRestTemplate(url);
+//        String data1 = parsing(data);
+//        List<NewsResponseDto> dtos = getData(data1);
+//        return dtos;
+//    }
     // category business
-    public List<NewsResponseDto> newsBusiness() throws JsonProcessingException {
-        String url = urlFrc + categories[0] +apiKey;
+//    public List<NewsResponseDto> newsBusiness() throws JsonProcessingException {
+//        String url = urlFrc + categories[0] +apiKey;
+//        String data = getRestTemplate(url);
+//        String data1 = parsing(data);
+//        List<NewsResponseDto> dtos = getData(data1);
+//        return dtos;
+//    }
+//    // entertainment
+//    public List<NewsResponseDto> newsEntertainment() throws JsonProcessingException {
+//        String url = urlFrc + categories[1] +apiKey;
+//        String data = getRestTemplate(url);
+//        String data1 = parsing(data);
+//        List<NewsResponseDto> dtos = getData(data1);
+//        return dtos;
+//    }
+//    // health
+//    public List<NewsResponseDto> newsHealth() throws JsonProcessingException {
+//        String url = urlFrc + categories[2] +apiKey;
+//        String data = getRestTemplate(url);
+//        String data1 = parsing(data);
+//        List<NewsResponseDto> dtos = getData(data1);
+//        return dtos;
+//    }
+//    //science
+//    public List<NewsResponseDto> newsScience() throws JsonProcessingException {
+//        String url = urlFrc + categories[3] +apiKey;
+//        String data = getRestTemplate(url);
+//        String data1 = parsing(data);
+//        List<NewsResponseDto> dtos = getData(data1);
+//        return dtos;
+//    }
+//    //sports
+//    public List<NewsResponseDto> newsSports() throws JsonProcessingException {
+//        String url = urlFrc + categories[4] +apiKey;
+//        String data = getRestTemplate(url);
+//        String data1 = parsing(data);
+//        List<NewsResponseDto> dtos = getData(data1);
+//        return dtos;
+//    }
+//
+//    //technology
+//    public List<NewsResponseDto> newsTechnology() throws JsonProcessingException {
+//        String url = urlFrc + categories[5] +apiKey;
+//        String data = getRestTemplate(url);
+//        String data1 = parsing(data);
+//        List<NewsResponseDto> dtos = getData(data1);
+//        return dtos;
+//    }
+    // Refactoring
+    public List<NewsResponseDto> newsGet(String category) throws JsonProcessingException {
+        String url = null;
+        if ("all".equals(category)) {
+            url = urlFr + apiKey;
+        }
+        else {
+            url = urlFrc + category + apiKey;
+        }
         String data = getRestTemplate(url);
         String data1 = parsing(data);
         List<NewsResponseDto> dtos = getData(data1);
         return dtos;
     }
-    // entertainment
-    public List<NewsResponseDto> newsEntertainment() throws JsonProcessingException {
-        String url = urlFrc + categories[1] +apiKey;
-        String data = getRestTemplate(url);
-        String data1 = parsing(data);
-        List<NewsResponseDto> dtos = getData(data1);
-        return dtos;
-    }
-    // health
-    public List<NewsResponseDto> newsHealth() throws JsonProcessingException {
-        String url = urlFrc + categories[2] +apiKey;
-        String data = getRestTemplate(url);
-        String data1 = parsing(data);
-        List<NewsResponseDto> dtos = getData(data1);
-        return dtos;
-    }
-    //science
-    public List<NewsResponseDto> newsScience() throws JsonProcessingException {
-        String url = urlFrc + categories[3] +apiKey;
-        String data = getRestTemplate(url);
-        String data1 = parsing(data);
-        List<NewsResponseDto> dtos = getData(data1);
-        return dtos;
-    }
-    //sports
-    public List<NewsResponseDto> newsSports() throws JsonProcessingException {
-        String url = urlFrc + categories[4] +apiKey;
-        String data = getRestTemplate(url);
-        String data1 = parsing(data);
-        List<NewsResponseDto> dtos = getData(data1);
-        return dtos;
-    }
-
-    //technology
-    public List<NewsResponseDto> newsTechnology() throws JsonProcessingException {
-        String url = urlFrc + categories[5] +apiKey;
-        String data = getRestTemplate(url);
-        String data1 = parsing(data);
-        List<NewsResponseDto> dtos = getData(data1);
-        return dtos;
-    }
-
 
 }
 
