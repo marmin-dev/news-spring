@@ -38,11 +38,11 @@ var main={
         }).done(function() {
             alert('Comment saved');
             window.location.href = `/${data.category}`;
+            
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
     },
-
     deleteComment : function() {
         var id = $('#id').val();
         var category = $('#category').val();
@@ -56,7 +56,7 @@ var main={
                 data: JSON.stringify(id)
             }).done(function(){
                 alert('Comment deleted');
-                window.location.href= `/${category}`;
+                window.location.href = `/${category}`;
             }).fail(function(error){
                 alert(JSON.stringify(error));
             });
@@ -68,14 +68,14 @@ var main={
          var id = $('#id').val();
          var category = $('#category').val();
          $.ajax({
-             type: 'PUT',
-             url: '/api/v1/comment/'+id,
-             dataType: 'json',
-             contentType:'application/json; charset=utf-8',
-             data: content
+            type: 'PUT',
+            url: '/api/v1/comment/'+id,
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: content
          }).done(function(){
-             alert('Updated Successfully');
-             window.location.href = `/${category}`;
+            alert('Updated Successfully');
+            window.location.href = `/${category}`;
          }).fail(function(error){
          alert(JSON.stringify(error));
          });
