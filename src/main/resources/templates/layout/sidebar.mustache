@@ -11,13 +11,29 @@
     {{/comment}}
     {{#comment}}
     <div class="list-group list-group-flush border-bottom scrollarea">
+        <input type="hidden" class="author" value="{{author}}" readonly>
         <strong class="mb-1">{{author}}</strong>
         <small>{{modifiedDate}}</small>
-        <div class="col-10 mb-1">{{content}}</div>
+        <p style="white-space:normal; word-wrap:break-word">{{content}}</p>
         <div class=" d-flex flex-row-reverse">
-            <a href="/{{category}}/{{id}}"><button class="btn btn-primary">Update</button></a>
+            <a href="/{{category}}/{{id}}" class="update" style="display:none;"><button class="btn btn-primary" >Update</button></a>
         </div>
     </div>
+    <script>
+        var authors = document.getElementsByClassName("author"); //Strong tag
+        var user = document.getElementById("user").value; //input tag
+        var updates = document.getElementsByClassName("update");
+        for(var i=0; i<authors.length;i++){
+            if(user == authors[i].value){
+            updates[i].style.display ="block";
+        }
+    }
+    </script>
     {{/comment}}
-
 </div>
+
+
+
+
+
+

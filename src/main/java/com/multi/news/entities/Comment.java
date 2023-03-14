@@ -1,8 +1,6 @@
 package com.multi.news.entities;
 
-import com.sun.istack.NotNull;
 import lombok.*;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 

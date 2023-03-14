@@ -1,13 +1,13 @@
 package com.multi.news.controllers;
 
 import com.multi.news.dtos.CommentRequestDto;
-import com.multi.news.dtos.CommentResponseDto;
 import com.multi.news.services.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController

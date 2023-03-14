@@ -2,6 +2,7 @@ package com.multi.news.services;
 
 import com.multi.news.dtos.CommentRequestDto;
 import com.multi.news.dtos.CommentResponseDto;
+import com.multi.news.dtos.SessionUser;
 import com.multi.news.entities.Comment;
 import com.multi.news.repositories.CommentRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,12 +20,19 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
 
-
+    private final HttpSession httpSession;
 
     // 댓글 달기 메서드
     @Transactional
     public Long commentCreate(CommentRequestDto dto){
-        return commentRepository.save(dto.toEntity()).getId();
+        SessionUser user =(SessionUser) httpSession.getAttribute("user");
+        Comment comment = Comment.builder().content(dto.getContent())
+                .author(user.getName())
+                .category(dto.getCategory())
+                .build();
+
+        return commentRepository.save(comment).getId();
+
     }
     // 게시물 별 댓글 찾기 메세드, 최신순 정렬
     @Transactional

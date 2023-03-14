@@ -17,6 +17,7 @@ var main={
         $('#btn-update').on('click',function(){
             _this.updateComment();
         });
+
     },
 
     saveComment : function () {
